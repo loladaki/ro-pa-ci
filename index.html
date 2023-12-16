@@ -27,6 +27,9 @@
             </div>
         </div>
         
+        <div id="computer">
+            <h2 id="textComp">Computer is waiting for you :)</h2>
+        </div>
 
     </div>
     
@@ -41,6 +44,7 @@
         let paperr = document.querySelector ('#paper')
         let scissorevent = document.querySelector('.scissorText')
         let scissorr = document.querySelector ('#scissor')
+        let changeText = document.querySelector ('#textComp')
 
         function namerock() {
             
@@ -89,7 +93,36 @@
         scissorr.addEventListener("mouseover", namescissor)
         scissorr.addEventListener("mouseout", namescissorout)
 
-    
+        // Game
+
+        let options = ["ROCK", 'PAPER', "SCISSOR"]
+        let score = 0
+        
+
+        function clickRock() {
+            
+            // Escolher random
+            let random = Math.floor(Math.random() * options.length);
+            console.log(random, options[random]);
+
+            if (options[random] == "ROCK") {
+                changeText.textContent ="TIE"
+            }
+
+            else if (options[random] == "PAPER") {
+                changeText.textContent ="LOST"
+            }
+
+            else {
+                changeText.textContent ="WIN"
+            }
+
+        }
+
+
+
+        rock.addEventListener('click',clickRock)
+
 
 
     </script>
