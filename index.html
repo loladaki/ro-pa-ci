@@ -31,6 +31,14 @@
             <h2 id="textComp">Computer is waiting for you :)</h2>
         </div>
 
+        <div id="score">
+            <p>Your Score <span id="playerScore"></span></p>
+            <p>Computer Score <span id="compScore"></span></p>
+            <div id="face"></div>
+            <button id="playAgain">Play Again</button>
+
+        </div>
+
     </div>
     
     <script>
@@ -45,6 +53,11 @@
         let scissorevent = document.querySelector('.scissorText')
         let scissorr = document.querySelector ('#scissor')
         let changeText = document.querySelector ('#textComp')
+        let colorChange = document.querySelector('#computer')
+        let plScore = document.querySelector('#playerScore')
+        let cpScore = document.querySelector('#compScore')
+        let face = document.querySelector('#face')
+        let playAgai = document.querySelector('#playAgain')
 
         function namerock() {
             
@@ -85,6 +98,8 @@
 
         }
 
+        
+
 
         rockk.addEventListener("mouseover", namerock)
         rockk.addEventListener("mouseout", namerockout)
@@ -96,8 +111,19 @@
         // Game
 
         let options = ["ROCK", 'PAPER', "SCISSOR"]
-        let score = 0
+        let scoreComp = 0
+        let scorePlayer = 0
         
+        function replay() {
+            scoreComp = 0
+            scorePlayer = 0
+            plScore.textContent=scorePlayer
+            cpScore.textContent=scoreComp
+            playAgain.style.visibility = 'hidden';
+            playAgain.style.opacity = '0';
+            face.style.opacity = 'hidden';
+            face.style.opacity = '0';
+            }
 
         function clickRock() {
             
@@ -107,21 +133,146 @@
 
             if (options[random] == "ROCK") {
                 changeText.textContent ="TIE"
+                colorChange.style.backgroundColor = "rgba(119, 128, 0, 0.521)"
+                
             }
 
             else if (options[random] == "PAPER") {
                 changeText.textContent ="LOST"
+                colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.521)"
+                scoreComp = scoreComp+1
             }
 
             else {
                 changeText.textContent ="WIN"
+                colorChange.style.backgroundColor = "rgba(0, 128, 0, 0.521)"
+                scorePlayer = scorePlayer+1
+            }
+
+            plScore.textContent=scorePlayer
+            cpScore.textContent=scoreComp
+
+            if (scorePlayer ==5 ) {
+
+                face.style.backgroundImage = "url(/images/Win.png)"
+                playAgain.style.visibility = 'visible';
+                playAgain.style.opacity = '1';
+                face.style.opacity = 'visible';
+                face.style.opacity = '1';
+                
+            }
+
+            else if (scoreComp ==5) {
+
+                face.style.backgroundImage = "url(/images/Lost.png)"
+                playAgain.style.visibility = 'visible';
+                playAgain.style.opacity = '1';
+                face.style.opacity = 'visible';
+                face.style.opacity = '1';
+            }
+
+        }
+        
+        function clickPaper() {
+            
+            // Escolher random
+            let random = Math.floor(Math.random() * options.length);
+            console.log(random, options[random]);
+
+            if (options[random] == "PAPER") {
+                changeText.textContent ="TIE"
+                colorChange.style.backgroundColor = "rgba(119, 128, 0, 0.521)"
+                
+            }
+
+            else if (options[random] == "SCISSOR") {
+                changeText.textContent ="LOST"
+                colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.521)"
+                scoreComp = scoreComp+1
+            }
+
+            else {
+                changeText.textContent ="WIN"
+                colorChange.style.backgroundColor = "rgba(0, 128, 0, 0.521)"
+                scorePlayer = scorePlayer+1
+            }
+
+            plScore.textContent=scorePlayer
+            cpScore.textContent=scoreComp
+
+            if (scorePlayer ==5 ) {
+
+                face.style.backgroundImage = "url(/images/Win.png)"
+                playAgain.style.visibility = 'visible';
+                playAgain.style.opacity = '1';
+                face.style.opacity = 'visible';
+                face.style.opacity = '1';
+                
+            }
+
+            else if (scoreComp ==5) {
+
+                face.style.backgroundImage = "url(/images/Lost.png)"
+                playAgain.style.visibility = 'visible';
+                playAgain.style.opacity = '1';
+                face.style.opacity = 'visible';
+                face.style.opacity = '1';
             }
 
         }
 
+        function clickScissor() {
+            
+            // Escolher random
+            let random = Math.floor(Math.random() * options.length);
+            console.log(random, options[random]);
 
+            if (options[random] == "SCISSOR") {
+                changeText.textContent ="TIE"
+                colorChange.style.backgroundColor = "rgba(119, 128, 0, 0.521)"
+                
+            }
+
+            else if (options[random] == "ROCK") {
+                changeText.textContent ="LOST"
+                colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.521)"
+                scoreComp = scoreComp+1
+            }
+
+            else {
+                changeText.textContent ="WIN"
+                colorChange.style.backgroundColor = "rgba(0, 128, 0, 0.521)"
+                scorePlayer = scorePlayer+1
+            }
+
+            plScore.textContent=scorePlayer
+            cpScore.textContent=scoreComp
+
+            if (scorePlayer ==5 ) {
+
+                face.style.backgroundImage = "url(/images/Win.png)"
+                playAgain.style.visibility = 'visible';
+                playAgain.style.opacity = '1';
+                face.style.opacity = 'visible';
+                face.style.opacity = '1';
+                
+            }
+
+            else if (scoreComp ==5) {
+
+                face.style.backgroundImage = "url(/images/Lost.png)"
+                playAgain.style.visibility = 'visible';
+                playAgain.style.opacity = '1';
+                face.style.opacity = 'visible';
+                face.style.opacity = '1';
+            }
+
+        }
 
         rock.addEventListener('click',clickRock)
+        playAgai.addEventListener('click',replay)
+        paper.addEventListener('click',clickPaper)
+        scissor.addEventListener('click',clickScissor)
 
 
 
