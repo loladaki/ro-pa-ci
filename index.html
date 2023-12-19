@@ -7,30 +7,56 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="todo">
-        <h1>Rock Paper Scissor</h1>
+    <div class="todos">
+        <div class="todo">
+            <h1>Rock Paper Scissor</h1>
 
         <div class="buttons">
-            <div id="rock">
-                <p class="rockText">ROCK</p>
-                <button id="rockButt"><img src="images/rock.png"></button>
+            <h2>Your Choice</h2>
+            <div class="ButtChoi">
+                <div id="rock">
+                    <p class="rockText">ROCK</p>
+                    <button id="rockButt"><img src="images/rock.png"></button>
+                </div>
+        
+                <div id="paper">
+                    <p class="paperText">PAPER</p>
+                    <button id="paperButt"><img src="images/paper.png"></button>
+                </div>
+        
+                <div id="scissor">
+                    <p class="scissorText">SCISSOR</p>
+                    <button id="scissorButt"><img src="images/scissor.webp"></button>
+                </div>
             </div>
-    
-            <div id="paper">
-                <p class="paperText">PAPER</p>
-                <button id="paperButt"><img src="images/paper.png"></button>
-            </div>
-    
-            <div id="scissor">
-                <p class="scissorText">SCISSOR</p>
-                <button id="scissorButt"><img src="images/scissor.webp"></button>
-            </div>
+            
         </div>
+
+        <div class="buttons">
+            <h2>PC Choice</h2>
+            <div class="ButtChoi">
+                <div id="pcrock">
+                    
+                    <button id="pcrockButt"><img src="images/rock.png"></button>
+                </div>
+        
+                <div id="pcpaper">
+                    
+                    <button id="pcpaperButt"><img src="images/paper.png"></button>
+                </div>
+        
+                <div id="pcscissor">
+                    
+                    <button id="pcscissorButt"><img src="images/scissor.webp"></button>
+                </div>
+            </div>
+            </div>
+            
         
         <div id="computer">
             <h2 id="textComp">Computer is waiting for you :)</h2>
         </div>
-
+        </div>
         <div id="score">
             <p>Your Score <span id="playerScore"></span></p>
             <p>Computer Score <span id="compScore"></span></p>
@@ -58,6 +84,9 @@
         let cpScore = document.querySelector('#compScore')
         let face = document.querySelector('#face')
         let playAgai = document.querySelector('#playAgain')
+        let pcrock1 = document.querySelector('pcrock')
+        let pcpaper1 = document.querySelector('pcpaper')
+        let pcscissor1 = document.querySelector('pcscissor')
 
         function namerock() {
             
@@ -132,21 +161,30 @@
             console.log(random, options[random]);
 
             if (options[random] == "ROCK") {
+                pcscissor.style.backgroundColor= "white"
+                pcpaper.style.backgroundColor= "white"
                 changeText.textContent ="TIE"
                 colorChange.style.backgroundColor = "rgba(119, 128, 0, 0.521)"
+                pcrock.style.backgroundColor= "rgba(119, 128, 0, 0.521)"
                 
             }
 
             else if (options[random] == "PAPER") {
-                changeText.textContent ="LOST"
+                pcrock.style.backgroundColor= "white"
+                pcscissor.style.backgroundColor= "white"
+                changeText.textContent ="LOSS"
                 colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.521)"
                 scoreComp = scoreComp+1
+                pcpaper.style.backgroundColor= "rgba(128, 0, 0, 0.521)"
             }
 
             else {
+                pcpaper.style.backgroundColor= "white"
+                pcrock.style.backgroundColor= "white"
                 changeText.textContent ="WIN"
                 colorChange.style.backgroundColor = "rgba(0, 128, 0, 0.521)"
                 scorePlayer = scorePlayer+1
+                pcscissor.style.backgroundColor= "rgba(0, 128, 0, 0.521)"
             }
 
             plScore.textContent=scorePlayer
@@ -180,21 +218,30 @@
             console.log(random, options[random]);
 
             if (options[random] == "PAPER") {
+                pcrock.style.backgroundColor= "white"
+                pcscissor.style.backgroundColor= "white"
                 changeText.textContent ="TIE"
                 colorChange.style.backgroundColor = "rgba(119, 128, 0, 0.521)"
+                pcpaper.style.backgroundColor= "rgba(119, 128, 0, 0.521)"
                 
             }
 
             else if (options[random] == "SCISSOR") {
-                changeText.textContent ="LOST"
+                pcpaper.style.backgroundColor= "white"
+                pcrock.style.backgroundColor= "white"
+                changeText.textContent ="LOSS"
                 colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.521)"
                 scoreComp = scoreComp+1
+                pcscissor.style.backgroundColor= "rgba(128, 0, 0, 0.521)"
             }
 
             else {
+                pcscissor.style.backgroundColor= "white"
+                pcpaper.style.backgroundColor= "white"
                 changeText.textContent ="WIN"
                 colorChange.style.backgroundColor = "rgba(0, 128, 0, 0.521)"
                 scorePlayer = scorePlayer+1
+                pcrock.style.backgroundColor= "rgba(0, 128, 0, 0.521)"
             }
 
             plScore.textContent=scorePlayer
@@ -228,21 +275,30 @@
             console.log(random, options[random]);
 
             if (options[random] == "SCISSOR") {
+                pcpaper.style.backgroundColor= "white"
+                pcrock.style.backgroundColor= "white"
                 changeText.textContent ="TIE"
                 colorChange.style.backgroundColor = "rgba(119, 128, 0, 0.521)"
+                pcscissor.style.backgroundColor= "rgba(119, 128, 0, 0.521)"
                 
             }
 
             else if (options[random] == "ROCK") {
-                changeText.textContent ="LOST"
+                pcscissor.style.backgroundColor= "white"
+                pcpaper.style.backgroundColor= "white"
+                changeText.textContent ="LOSS"
                 colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.521)"
                 scoreComp = scoreComp+1
+                pcrock.style.backgroundColor= "rgba(128, 0, 0, 0.521)"
             }
 
             else {
+                pcrock.style.backgroundColor= "white"
+                pcscissor.style.backgroundColor= "white"
                 changeText.textContent ="WIN"
                 colorChange.style.backgroundColor = "rgba(0, 128, 0, 0.521)"
                 scorePlayer = scorePlayer+1
+                pcpaper.style.backgroundColor= "rgba(0, 128, 0, 0.521)"
             }
 
             plScore.textContent=scorePlayer
@@ -269,10 +325,10 @@
 
         }
 
-        rock.addEventListener('click',clickRock)
+        rockk.addEventListener('click',clickRock)
         playAgai.addEventListener('click',replay)
-        paper.addEventListener('click',clickPaper)
-        scissor.addEventListener('click',clickScissor)
+        paperr.addEventListener('click',clickPaper)
+        scissorr.addEventListener('click',clickScissor)
 
 
 

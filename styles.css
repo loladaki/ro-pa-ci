@@ -9,14 +9,28 @@ img {
 }
 
 .todo {
-    margin: 100px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    gap: 80px;
+    gap: 30px;
 }
-
+.todos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+}
+.ButtChoi {
     display: flex;
     gap: 40px
 }
@@ -33,6 +47,7 @@ img {
     width: 200px;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
 }
 
 .rockText, .paperText, .scissorText {
@@ -88,3 +103,7 @@ img {
     visibility: visible;
 }
 
+#pcrock, #pcpaper, #pcscissor {
+    padding: 8px;
+    border-radius: 5px;
+}
