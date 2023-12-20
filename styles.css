@@ -14,12 +14,21 @@ img {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    
+
 }
 .todos {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
+    padding: 40px;
+    background-color: #e8e4e6;
+    border-radius: 20px;
+    visibility: hidden;
+    opacity: 0;
 }
 .buttons {
     display: flex;
@@ -32,11 +41,14 @@ img {
 }
 .ButtChoi {
     display: flex;
-    gap: 40px
+    gap: 40px;
+    border-radius: 10px;
+    
 }
 
-#rockButt {
+#rockButt, #paperButt, #scissorButt, #pcrockButt, #pcpaperButt, #pcscissorButt {
     opacity: 1;
+    border-radius: 20px;
 
 }
 
@@ -48,6 +60,8 @@ img {
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    padding: 8px;
+    border-radius: 20px;
 }
 
 .rockText, .paperText, .scissorText {
@@ -72,7 +86,7 @@ img {
     padding: 10px;
     width: 1200px;
     height: 50px;
-    border-radius: 5px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,6 +98,10 @@ img {
     opacity: 0;
     visibility: hidden;
     border-radius: 5px;
+    font-size: medium;
+    font-weight: 900;
+    background-color: #f9bc60;
+    color: #001e1d;
 }
 
 #score {
@@ -91,6 +109,13 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #abd1c6;
+    padding: 30px;
+    border-radius: 10px;
+    color: #001e1d;
+}
+.idscore {
+    font-size: larger;
 }
 
 #face {
@@ -105,5 +130,53 @@ img {
 
 #pcrock, #pcpaper, #pcscissor {
     padding: 8px;
-    border-radius: 5px;
+    border-radius: 20px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#004643;
+}
+
+h1 {
+    font-size: 50px;
+    color: #fffffe;
+}
+
+h2 {
+    font-size: 30px;
+    color: #004643;
+}
+
+#textComp {
+    color: black;
+}
+
+.start {
+    background-color: #e8e4e6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 300px;
+    border-radius: 20px;
+    opacity: 1;
+    visibility: visible;
+    
+}
+
+.start > {
+    color: black;
+}
+
+.start > button {
+    font-size: 50px;
+    height: 80px;
+    width: 500px;
+    background-color: #f9bc60;
+    color: #001e1d;
+    border-radius: 10px;
 }
