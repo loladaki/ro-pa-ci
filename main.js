@@ -20,18 +20,21 @@ let todos = document.querySelector('.todos')
 let start = document.querySelector('.start')
 let startt = document.querySelector('.startGame')
 
+
+
 function startGame() {
     
-    start.style.visibility = 'hidden';
-    start.style.opacity = '0';
-    start.style.display = "none"
+    start.classList.toggle('hidden');
+    start.classList.toggle('visuallyhidden');
+    document.body.offsetHeight;
 }
 
 function endGame() {
-
+    
     todos.style.visibility = 'hidden';
     todos.style.opacity = '0';
-    todos.style.display = "none";
+    todos.style.display = "none"
+    document.body.offsetHeight;
 }
 
 function startGame2() {
@@ -39,6 +42,7 @@ function startGame2() {
     todos.style.visibility = 'visible';
     todos.style.opacity = '1';
     todos.style.display = "flex";
+    document.body.offsetHeight;
 }
 
 function namerock() {
@@ -129,19 +133,12 @@ function clickRock() {
     plScore.textContent=scorePlayer
     cpScore.textContent=scoreComp
     if (scorePlayer ==5 ) {
-        face.style.backgroundImage = "url(images/Win.png)"
-        playAgain.style.visibility = 'visible';
-        playAgain.style.opacity = '1';
-        face.style.opacity = 'visible';
-        face.style.opacity = '1';
+        endGame()
         
     }
     else if (scoreComp ==5) {
         face.style.backgroundImage = "url(images/Lost.png)"
-        playAgain.style.visibility = 'visible';
-        playAgain.style.opacity = '1';
-        face.style.opacity = 'visible';
-        face.style.opacity = '1';
+        endGame()
     }
 }
 
@@ -178,18 +175,12 @@ function clickPaper() {
     cpScore.textContent=scoreComp
     if (scorePlayer ==5 ) {
         face.style.backgroundImage = "url(images/Win.png)"
-        playAgain.style.visibility = 'visible';
-        playAgain.style.opacity = '1';
-        face.style.opacity = 'visible';
-        face.style.opacity = '1';
+        endGame()
         
     }
     else if (scoreComp ==5) {
         face.style.backgroundImage = "url(images/Lost.png)"
-        playAgain.style.visibility = 'visible';
-        playAgain.style.opacity = '1';
-        face.style.opacity = 'visible';
-        face.style.opacity = '1';
+        endGame()
     }
 }
 function clickScissor() {
@@ -224,19 +215,11 @@ function clickScissor() {
     plScore.textContent=scorePlayer
     cpScore.textContent=scoreComp
     if (scorePlayer ==5 ) {
-        face.style.backgroundImage = "url(images/Win.png)"
-        playAgain.style.visibility = 'visible';
-        playAgain.style.opacity = '1';
-        face.style.opacity = 'visible';
-        face.style.opacity = '1';
+        endGame()
         
     }
     else if (scoreComp ==5) {
-        face.style.backgroundImage = "url(images/Lost.png)"
-        playAgain.style.visibility = 'visible';
-        playAgain.style.opacity = '1';
-        face.style.opacity = 'visible';
-        face.style.opacity = '1';
+        endGame()
     }
 }
 rockk.addEventListener('click',clickRock)
