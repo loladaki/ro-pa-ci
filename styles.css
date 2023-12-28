@@ -15,31 +15,34 @@ img {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     gap: 20px;
     padding: 10px;
     border-radius: 10px;
-    
-
 }
 .todos {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 10px;
     background-color: #e8e4e6;
     border-radius: 20px;
     opacity: 0;
-    transition: all 1s linear;
+    visibility: hidden;
+    transition: all 0.2s linear;
+    position: fixed;
+    margin-top: 100px;
+
 }
-.buttons {
+.buttons, .buttonscp {
     display: flex;
     flex-direction: column;
     gap: 10px;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    visibility: hidden;
 
 }
 .ButtChoi {
@@ -112,11 +115,11 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #a9e2cc8c;
+    background-color: #aac6db8c;
     padding: 30px;
     border-radius: 10px;
     color: #001e1d;
-    border: solid 3px #6591778c;
+    border: solid 5px #8b84af8c;
 }
 .idscore {
     font-size: larger;
@@ -142,11 +145,15 @@ body {
     flex-direction: column;
     align-items: center;
     background-color:#004643;
+    margin:0px;
+
 }
 
 h1 {
     font-size: 50px;
     color: #fffffe;
+    margin:0px;
+    margin-top: 15px;
 }
 
 h2 {
@@ -160,16 +167,17 @@ h2 {
 
 .start {
     background-color: #e8e4e6;
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    margin-top: 300px;
+    top: 300px;
     border-radius: 20px;
     opacity: 1;
-    visibility: hidden;
-    transition: all 1s linear;
+    visibility: visible;
+    transition: all 0.5s linear;
+    position: fixed;
     
 }
 
@@ -196,13 +204,28 @@ h2 {
 
 .EndGame {
     display: flex;
-    background-color: blue;
+    background-color: #e8e4e6;
     padding: 50px;
     flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s linear;
+    position: fixed;
+    top: 300px;
+    border-radius: 20px;
 }
 
 .welcome {
     display: none;
     visibility: hidden;
     opacity: 0;
+}
+
+#EndplayAgain {
+    font-size: 40px;
+    width: 300px;
+    height: 100px;
+    color: #001e1d;
+    border-radius: 10px;
+    
 }

@@ -19,30 +19,38 @@ let pcscissor1 = document.querySelector('pcscissor')
 let todos = document.querySelector('.todos')
 let start = document.querySelector('.start')
 let startt = document.querySelector('.startGame')
-
+    end = document.querySelector('.EndGame')
+    endscorepl = document.querySelector('#EndplayerScore')
+    endscorecp = document.querySelector('#EndcompScore')
+    endbutt = document.querySelector('#EndplayAgain')
+    buttt = document.querySelector('.buttons')
+    butttcp = document.querySelector('.buttonscp')
 
 
 function startGame() {
     
-    start.classList.toggle('hidden');
-    start.classList.toggle('visuallyhidden');
-    document.body.offsetHeight;
+    start.style.visibility = 'hidden';
+    start.style.opacity = '0';
+    buttt.style.visibility = 'visible';
+    butttcp.style.visibility = 'visible';
 }
 
 function endGame() {
     
     todos.style.visibility = 'hidden';
     todos.style.opacity = '0';
-    todos.style.display = "none"
-    document.body.offsetHeight;
+    end.style.visibility = 'visible';
+    end.style.opacity = '1';
+    buttt.style.visibility = 'hidden';
+    butttcp.style.visibility = 'hidden';
+
+
 }
 
 function startGame2() {
     
     todos.style.visibility = 'visible';
     todos.style.opacity = '1';
-    todos.style.display = "flex";
-    document.body.offsetHeight;
 }
 
 function namerock() {
@@ -91,16 +99,6 @@ let options = ["ROCK", 'PAPER', "SCISSOR"]
 let scoreComp = 0
 let scorePlayer = 0
 
-function replay() {
-    scoreComp = 0
-    scorePlayer = 0
-    plScore.textContent=scorePlayer
-    cpScore.textContent=scoreComp
-    playAgain.style.visibility = 'hidden';
-    playAgain.style.opacity = '0';
-    face.style.opacity = 'hidden';
-    face.style.opacity = '0';
-    }
 function clickRock() {
     
     // Escolher random
@@ -132,12 +130,13 @@ function clickRock() {
     }
     plScore.textContent=scorePlayer
     cpScore.textContent=scoreComp
+    endscorepl.textContent=scorePlayer
+    endscorecp.textContent=scoreComp
     if (scorePlayer ==5 ) {
         endGame()
         
     }
     else if (scoreComp ==5) {
-        face.style.backgroundImage = "url(images/Lost.png)"
         endGame()
     }
 }
@@ -173,13 +172,13 @@ function clickPaper() {
     }
     plScore.textContent=scorePlayer
     cpScore.textContent=scoreComp
+    endscorepl.textContent=scorePlayer
+    endscorecp.textContent=scoreComp
     if (scorePlayer ==5 ) {
-        face.style.backgroundImage = "url(images/Win.png)"
         endGame()
         
     }
     else if (scoreComp ==5) {
-        face.style.backgroundImage = "url(images/Lost.png)"
         endGame()
     }
 }
@@ -214,6 +213,8 @@ function clickScissor() {
     }
     plScore.textContent=scorePlayer
     cpScore.textContent=scoreComp
+    endscorepl.textContent=scorePlayer
+    endscorecp.textContent=scoreComp
     if (scorePlayer ==5 ) {
         endGame()
         
@@ -222,7 +223,20 @@ function clickScissor() {
         endGame()
     }
 }
+
+endbutt.addEventListener('click', function(){
+    scoreComp = 0
+    scorePlayer = 0
+
+    end.style.visibility = 'hidden';
+    end.style.opacity = '0';
+    buttt.style.visibility = 'visible';
+    butttcp.style.visibility = 'visible';
+    startGame2()
+})
+
 rockk.addEventListener('click',clickRock)
 playAgai.addEventListener('click',endGame)
 paperr.addEventListener('click',clickPaper)
 scissorr.addEventListener('click',clickScissor)
+
