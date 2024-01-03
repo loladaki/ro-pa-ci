@@ -25,6 +25,11 @@ let startt = document.querySelector('.startGame')
     endbutt = document.querySelector('#EndplayAgain')
     buttt = document.querySelector('.buttons')
     butttcp = document.querySelector('.buttonscp')
+    reset = document.querySelector('.reset')
+
+reset.addEventListener("click",function(){
+    
+})
 
 
 function startGame() {
