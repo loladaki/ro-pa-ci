@@ -121,9 +121,9 @@ function clickRock() {
         pcrock.style.backgroundColor= "#e8e4e6"
         pcscissor.style.backgroundColor= "#e8e4e6"
         changeText.textContent ="LOSS"
-        colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.0.30)"
+        colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.30)"
         scoreComp = scoreComp+1
-        pcpaper.style.backgroundColor= "rgba(128, 0, 0, 0.0.30)"
+        pcpaper.style.backgroundColor= "rgba(128, 0, 0, 0.30)"
     }
     else {
         pcpaper.style.backgroundColor= "#e8e4e6"
