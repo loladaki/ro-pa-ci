@@ -1,247 +1,164 @@
-let rock = document.querySelector("#rockButt")
-let paper = document.querySelector("#paperButt")
-let scissor = document.querySelector("#scissorButt")
-let rockevent = document.querySelector('.rockText')
-let rockk = document.querySelector ('#rock')
-let paperevent = document.querySelector('.paperText')
-let paperr = document.querySelector ('#paper')
-let scissorevent = document.querySelector('.scissorText')
-let scissorr = document.querySelector ('#scissor')
-let changeText = document.querySelector ('#textComp')
-let colorChange = document.querySelector('#computer')
-let plScore = document.querySelector('#playerScore')
-let cpScore = document.querySelector('#compScore')
-let face = document.querySelector('#face')
-let playAgai = document.querySelector('#playAgain')
-let pcrock1 = document.querySelector('pcrock')
-let pcpaper1 = document.querySelector('pcpaper')
-let pcscissor1 = document.querySelector('pcscissor')
-let todos = document.querySelector('.todos')
-let start = document.querySelector('.start')
-let startt = document.querySelector('.startGame')
-    end = document.querySelector('.EndGame')
-    endscorepl = document.querySelector('#EndplayerScore')
-    endscorecp = document.querySelector('#EndcompScore')
-    endbutt = document.querySelector('#EndplayAgain')
-    buttt = document.querySelector('.buttons')
-    butttcp = document.querySelector('.buttonscp')
-    reset = document.querySelector('.reset')
+const rockTile = document.querySelector('#rock');
+const paperTile = document.querySelector('#paper');
+const scissorTile = document.querySelector('#scissor');
 
-reset.addEventListener("click",function(){
-    
-})
+const rockText = document.querySelector('.rockText');
+const paperText = document.querySelector('.paperText');
+const scissorText = document.querySelector('.scissorText');
 
+const resultText = document.querySelector('#textComp');
+const resultBanner = document.querySelector('#computer');
 
-function startGame() {
-    
-    start.style.visibility = 'hidden';
-    start.style.opacity = '0';
-    buttt.style.visibility = 'visible';
-    butttcp.style.visibility = 'visible';
+const playerScoreEl = document.querySelector('#playerScore');
+const compScoreEl = document.querySelector('#compScore');
+const endPlayerScoreEl = document.querySelector('#EndplayerScore');
+const endCompScoreEl = document.querySelector('#EndcompScore');
+
+const playAgainBtn = document.querySelector('#playAgain');
+const startScreen = document.querySelector('.start');
+const startBtn = document.querySelector('.startGame');
+const endScreen = document.querySelector('.EndGame');
+const endPlayAgainBtn = document.querySelector('#EndplayAgain');
+const gameContainer = document.querySelector('.todos');
+const playerButtons = document.querySelector('.buttons');
+const computerButtons = document.querySelector('.buttonscp');
+const resetBtn = document.querySelector('.reset');
+
+const pcTiles = {
+  ROCK: document.querySelector('#pcrock'),
+  PAPER: document.querySelector('#pcpaper'),
+  SCISSOR: document.querySelector('#pcscissor'),
+};
+
+const options = ['ROCK', 'PAPER', 'SCISSOR'];
+const WINNING_SCORE = 5;
+const neutralColor = '#e8e4e6';
+
+let scoreComp = 0;
+let scorePlayer = 0;
+let gameOver = false;
+
+function toggleGameVisibility({ startVisible, gameVisible, endVisible }) {
+  startScreen.style.visibility = startVisible ? 'visible' : 'hidden';
+  startScreen.style.opacity = startVisible ? '1' : '0';
+
+  gameContainer.style.visibility = gameVisible ? 'visible' : 'hidden';
+  gameContainer.style.opacity = gameVisible ? '1' : '0';
+
+  endScreen.style.visibility = endVisible ? 'visible' : 'hidden';
+  endScreen.style.opacity = endVisible ? '1' : '0';
+
+  playerButtons.style.visibility = gameVisible ? 'visible' : 'hidden';
+  computerButtons.style.visibility = gameVisible ? 'visible' : 'hidden';
+}
+
+function resetPcHighlights() {
+  Object.values(pcTiles).forEach((tile) => {
+    tile.style.backgroundColor = neutralColor;
+  });
+}
+
+function syncScores() {
+  playerScoreEl.textContent = scorePlayer;
+  compScoreEl.textContent = scoreComp;
+  endPlayerScoreEl.textContent = scorePlayer;
+  endCompScoreEl.textContent = scoreComp;
+}
+
+function setRoundUI(status, computerChoice) {
+  resetPcHighlights();
+  pcTiles[computerChoice].style.backgroundColor =
+    status === 'WIN'
+      ? 'rgba(0, 128, 0, 0.30)'
+      : status === 'LOSS'
+      ? 'rgba(128, 0, 0, 0.30)'
+      : 'rgba(119, 128, 0, 0.30)';
+
+  const bannerColor =
+    status === 'WIN'
+      ? 'rgba(0, 128, 0, 0.30)'
+      : status === 'LOSS'
+      ? 'rgba(128, 0, 0, 0.30)'
+      : 'rgba(119, 128, 0, 0.30)';
+
+  resultBanner.style.backgroundColor = bannerColor;
+  resultText.textContent = `${status} — Computer chose ${computerChoice}`;
+}
+
+function getRoundResult(playerChoice, computerChoice) {
+  if (playerChoice === computerChoice) return 'TIE';
+
+  const playerWins =
+    (playerChoice === 'ROCK' && computerChoice === 'SCISSOR') ||
+    (playerChoice === 'PAPER' && computerChoice === 'ROCK') ||
+    (playerChoice === 'SCISSOR' && computerChoice === 'PAPER');
+
+  return playerWins ? 'WIN' : 'LOSS';
 }
 
 function endGame() {
-    
-    todos.style.visibility = 'hidden';
-    todos.style.opacity = '0';
-    end.style.visibility = 'visible';
-    end.style.opacity = '1';
-    buttt.style.visibility = 'hidden';
-    butttcp.style.visibility = 'hidden';
-
-
+  gameOver = true;
+  toggleGameVisibility({ startVisible: false, gameVisible: false, endVisible: true });
 }
 
-function startGame2() {
-    
-    todos.style.visibility = 'visible';
-    todos.style.opacity = '1';
+function playRound(playerChoice) {
+  if (gameOver) return;
+
+  const computerChoice = options[Math.floor(Math.random() * options.length)];
+  const result = getRoundResult(playerChoice, computerChoice);
+
+  if (result === 'WIN') scorePlayer += 1;
+  if (result === 'LOSS') scoreComp += 1;
+
+  setRoundUI(result, computerChoice);
+  syncScores();
+
+  if (scorePlayer >= WINNING_SCORE || scoreComp >= WINNING_SCORE) {
+    endGame();
+  }
 }
 
-function namerock() {
-    
-    rockevent.style.visibility = 'visible';
-    rockevent.style.opacity = '1';
-}
-function namerockout() {
-    
-    rockevent.style.visibility = 'hidden';
-    rockevent.style.opacity = '0';
-}
-function namepaper() {
-    
-    paperevent.style.visibility = 'visible';
-    paperevent.style.opacity = '1';
-}
-function namepaperout() {
-    
-    paperevent.style.visibility = 'hidden';
-    paperevent.style.opacity = '0';
-}
-function namescissor() {
-    
-    scissorevent.style.visibility = 'visible';
-    scissorevent.style.opacity = '1';
-}
-function namescissorout() {
-    
-    scissorevent.style.visibility = 'hidden';
-    scissorevent.style.opacity = '0';
+function resetGame() {
+  scoreComp = 0;
+  scorePlayer = 0;
+  gameOver = false;
+
+  syncScores();
+  resetPcHighlights();
+
+  resultText.textContent = 'Computer is waiting for you :)';
+  resultBanner.style.backgroundColor = 'rgba(153, 143, 108, 0.425)';
+
+  toggleGameVisibility({ startVisible: false, gameVisible: true, endVisible: false });
 }
 
-rockk.addEventListener("mouseover", namerock)
-rockk.addEventListener("mouseout", namerockout)
-paperr.addEventListener("mouseover", namepaper)
-paperr.addEventListener("mouseout", namepaperout)
-scissorr.addEventListener("mouseover", namescissor)
-scissorr.addEventListener("mouseout", namescissorout)
-startt.addEventListener('click',() => {    
-    startGame();
-    startGame2();    
+function setHover(tileTextEl, visible) {
+  tileTextEl.style.visibility = visible ? 'visible' : 'hidden';
+  tileTextEl.style.opacity = visible ? '1' : '0';
+}
+
+rockTile.addEventListener('mouseover', () => setHover(rockText, true));
+rockTile.addEventListener('mouseout', () => setHover(rockText, false));
+paperTile.addEventListener('mouseover', () => setHover(paperText, true));
+paperTile.addEventListener('mouseout', () => setHover(paperText, false));
+scissorTile.addEventListener('mouseover', () => setHover(scissorText, true));
+scissorTile.addEventListener('mouseout', () => setHover(scissorText, false));
+
+startBtn.addEventListener('click', () => {
+  toggleGameVisibility({ startVisible: false, gameVisible: true, endVisible: false });
 });
-// Game
-let options = ["ROCK", 'PAPER', "SCISSOR"]
-let scoreComp = 0
-let scorePlayer = 0
 
-function clickRock() {
-    
-    // Escolher random
-    let random = Math.floor(Math.random() * options.length);
-    console.log(random, options[random]);
-    if (options[random] == "ROCK") {
-        pcscissor.style.backgroundColor= "#e8e4e6"
-        pcpaper.style.backgroundColor= "#e8e4e6"
-        changeText.textContent ="TIE"
-        colorChange.style.backgroundColor = "rgba(119, 128, 0, 0.30)"
-        pcrock.style.backgroundColor= "rgba(119, 128, 0, 0.30)"
-        
-    }
-    else if (options[random] == "PAPER") {
-        pcrock.style.backgroundColor= "#e8e4e6"
-        pcscissor.style.backgroundColor= "#e8e4e6"
-        changeText.textContent ="LOSS"
-        colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.30)"
-        scoreComp = scoreComp+1
-        pcpaper.style.backgroundColor= "rgba(128, 0, 0, 0.30)"
-    }
-    else {
-        pcpaper.style.backgroundColor= "#e8e4e6"
-        pcrock.style.backgroundColor= "#e8e4e6"
-        changeText.textContent ="WIN"
-        colorChange.style.backgroundColor = "rgba(0, 128, 0, 0.30)"
-        scorePlayer = scorePlayer+1
-        pcscissor.style.backgroundColor= "rgba(0, 128, 0, 0.30)"
-    }
-    plScore.textContent=scorePlayer
-    cpScore.textContent=scoreComp
-    endscorepl.textContent=scorePlayer
-    endscorecp.textContent=scoreComp
-    if (scorePlayer ==5 ) {
-        endGame()
-        
-    }
-    else if (scoreComp ==5) {
-        endGame()
-    }
-}
+resetBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  resetGame();
+});
 
-function clickPaper() {
-    
-    // Escolher random
-    let random = Math.floor(Math.random() * options.length);
-    console.log(random, options[random]);
-    if (options[random] == "PAPER") {
-        pcrock.style.backgroundColor= "#e8e4e6"
-        pcscissor.style.backgroundColor= "#e8e4e6"
-        changeText.textContent ="TIE"
-        colorChange.style.backgroundColor = "rgba(119, 128, 0, 0.30)"
-        pcpaper.style.backgroundColor= "rgba(119, 128, 0, 0.30)"
-        
-    }
-    else if (options[random] == "SCISSOR") {
-        pcpaper.style.backgroundColor= "#e8e4e6"
-        pcrock.style.backgroundColor= "#e8e4e6"
-        changeText.textContent ="LOSS"
-        colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.30)"
-        scoreComp = scoreComp+1
-        pcscissor.style.backgroundColor= "rgba(128, 0, 0, 0.30)"
-    }
-    else {
-        pcscissor.style.backgroundColor= "#e8e4e6"
-        pcpaper.style.backgroundColor= "#e8e4e6"
-        changeText.textContent ="WIN"
-        colorChange.style.backgroundColor = "rgba(0, 128, 0, 0.30)"
-        scorePlayer = scorePlayer+1
-        pcrock.style.backgroundColor= "rgba(0, 128, 0, 0.30)"
-    }
-    plScore.textContent=scorePlayer
-    cpScore.textContent=scoreComp
-    endscorepl.textContent=scorePlayer
-    endscorecp.textContent=scoreComp
-    if (scorePlayer ==5 ) {
-        endGame()
-        
-    }
-    else if (scoreComp ==5) {
-        endGame()
-    }
-}
-function clickScissor() {
-    
-    // Escolher random
-    let random = Math.floor(Math.random() * options.length);
-    console.log(random, options[random]);
-    if (options[random] == "SCISSOR") {
-        pcpaper.style.backgroundColor= "#e8e4e6"
-        pcrock.style.backgroundColor= "#e8e4e6"
-        changeText.textContent ="TIE"
-        colorChange.style.backgroundColor = "rgba(119, 128, 0, 0.30)"
-        pcscissor.style.backgroundColor= "rgba(119, 128, 0, 0.30)"
-        
-    }
-    else if (options[random] == "ROCK") {
-        pcscissor.style.backgroundColor= "#e8e4e6"
-        pcpaper.style.backgroundColor= "#e8e4e6"
-        changeText.textContent ="LOSS"
-        colorChange.style.backgroundColor = "rgba(128, 0, 0, 0.30)"
-        scoreComp = scoreComp+1
-        pcrock.style.backgroundColor= "rgba(128, 0, 0, 0.30)"
-    }
-    else {
-        pcrock.style.backgroundColor= "#e8e4e6"
-        pcscissor.style.backgroundColor= "#e8e4e6"
-        changeText.textContent ="WIN"
-        colorChange.style.background = "rgba(0, 128, 0, 0.30)"
-        scorePlayer = scorePlayer+1
-        pcpaper.style.backgroundColor= "rgba(0, 128, 0, 0.30)"
-    }
-    plScore.textContent=scorePlayer
-    cpScore.textContent=scoreComp
-    endscorepl.textContent=scorePlayer
-    endscorecp.textContent=scoreComp
-    if (scorePlayer ==5 ) {
-        endGame()
-        
-    }
-    else if (scoreComp ==5) {
-        endGame()
-    }
-}
+rockTile.addEventListener('click', () => playRound('ROCK'));
+paperTile.addEventListener('click', () => playRound('PAPER'));
+scissorTile.addEventListener('click', () => playRound('SCISSOR'));
 
-endbutt.addEventListener('click', function(){
-    scoreComp = 0
-    scorePlayer = 0
+playAgainBtn.addEventListener('click', endGame);
+endPlayAgainBtn.addEventListener('click', resetGame);
 
-    end.style.visibility = 'hidden';
-    end.style.opacity = '0';
-    buttt.style.visibility = 'visible';
-    butttcp.style.visibility = 'visible';
-    startGame2()
-})
-
-rockk.addEventListener('click',clickRock)
-playAgai.addEventListener('click',endGame)
-paperr.addEventListener('click',clickPaper)
-scissorr.addEventListener('click',clickScissor)
-
+syncScores();
+resetPcHighlights();
