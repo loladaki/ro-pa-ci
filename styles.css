@@ -200,6 +200,10 @@ img {
     margin-bottom: 10px;
 }
 
+.Endidscore {
+    color: #000000;
+}
+
 #playAgain,
 #EndplayAgain,
 .start > button {
