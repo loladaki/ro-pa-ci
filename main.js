@@ -13,6 +13,7 @@ const playerScoreEl = document.querySelector('#playerScore');
 const compScoreEl = document.querySelector('#compScore');
 const endPlayerScoreEl = document.querySelector('#EndplayerScore');
 const endCompScoreEl = document.querySelector('#EndcompScore');
+const endResultMessageEl = document.querySelector('#endResultMessage');
 
 const playAgainBtn = document.querySelector('#playAgain');
 const startScreen = document.querySelector('.start');
@@ -98,6 +99,15 @@ function getRoundResult(playerChoice, computerChoice) {
 
 function endGame() {
   gameOver = true;
+
+  if (scorePlayer > scoreComp) {
+    endResultMessageEl.textContent = 'You Win';
+  } else if (scoreComp > scorePlayer) {
+    endResultMessageEl.textContent = 'You Lose';
+  } else {
+    endResultMessageEl.textContent = "It's a Tie";
+  }
+
   toggleGameVisibility({ startVisible: false, gameVisible: false, endVisible: true });
 }
 
@@ -127,6 +137,7 @@ function resetGame() {
   resetPcHighlights();
 
   resultText.textContent = 'Computer is waiting for you :)';
+  endResultMessageEl.textContent = '';
   resultBanner.style.backgroundColor = 'rgba(153, 143, 108, 0.425)';
 
   toggleGameVisibility({ startVisible: false, gameVisible: true, endVisible: false });
