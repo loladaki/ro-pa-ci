@@ -260,6 +260,15 @@ img {
     box-shadow: var(--shadow);
 }
 
+
+#endResultMessage {
+    margin: 14px 0 6px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #0f172a;
+}
+
 #EndplayAgain {
     font-size: 1.8rem;
     width: 260px;
